@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy — Loco Route Express</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            min-height: 100vh;
+            background: #0c1420;
+            color: #a8b8c8;
+            line-height: 1.7;
+        }
+
+        .rails {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 85% 45% at 50% 0%, rgba(218, 165, 60, 0.18) 0%, transparent 55%),
+                linear-gradient(180deg, #0c1420 0%, #101a28 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .rails::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            opacity: 0.05;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 40px,
+                rgba(218, 165, 60, 0.6) 40px,
+                rgba(218, 165, 60, 0.6) 42px
+            );
+        }
+
+        .wrap {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+
+        .masthead {
+            margin-bottom: 36px;
+            padding-bottom: 28px;
+            border-bottom: 2px solid rgba(218, 165, 60, 0.25);
+        }
+
+        .masthead .label {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #3dd68c;
+            margin-bottom: 12px;
+        }
+
+        .masthead h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #f0f6fc;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .masthead .intro {
+            font-size: 1rem;
+            color: #7a90a4;
+            max-width: 52ch;
+        }
+
+        .scope-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 36px;
+        }
+
+        .scope-item {
+            padding: 18px 16px;
+            border-radius: 12px;
+            background: rgba(14, 24, 36, 0.95);
+            border-left: 3px solid #5eb8e8;
+        }
+
+        .scope-item.ads {
+            border-left-color: #daa53c;
+        }
+
+        .scope-item h2 {
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #c8d8e8;
+            margin-bottom: 8px;
+        }
+
+        .scope-item p {
+            font-size: 0.88rem;
+            color: #6a8094;
+        }
+
+        .section {
+            margin-bottom: 32px;
+        }
+
+        .section > h2 {
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #daa53c;
+            margin-bottom: 16px;
+        }
+
+        .timeline {
+            list-style: none;
+            border-left: 2px solid rgba(94, 184, 232, 0.25);
+            margin-left: 8px;
+            padding-left: 24px;
+        }
+
+        .timeline li {
+            position: relative;
+            margin-bottom: 22px;
+            padding-left: 4px;
+        }
+
+        .timeline li::before {
+            content: "";
+            position: absolute;
+            left: -31px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #5eb8e8;
+            border: 2px solid #0c1420;
+            box-shadow: 0 0 0 2px rgba(94, 184, 232, 0.35);
+        }
+
+        .timeline h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #e0ecf4;
+            margin-bottom: 6px;
+        }
+
+        .timeline p {
+            font-size: 0.9rem;
+            color: #6a8094;
+        }
+
+        .rights-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .rights-list article {
+            padding: 16px 18px;
+            border-radius: 12px;
+            background: rgba(10, 18, 28, 0.88);
+            border: 1px solid rgba(70, 110, 150, 0.2);
+        }
+
+        .rights-list h3 {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: #e8f0f8;
+            margin-bottom: 6px;
+        }
+
+        .rights-list p {
+            font-size: 0.88rem;
+            color: #6a8094;
+        }
+
+        .note {
+            font-size: 0.84rem;
+            color: #4a6074;
+            padding: 16px 18px;
+            border-radius: 10px;
+            background: rgba(8, 14, 22, 0.8);
+            border: 1px dashed rgba(70, 110, 150, 0.3);
+            margin-bottom: 32px;
+        }
+
+        .back {
+            text-align: center;
+        }
+
+        .back a {
+            display: inline-block;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #0c1420;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            background: linear-gradient(180deg, #e8c060 0%, #b87828 100%);
+            border: 1px solid rgba(240, 220, 160, 0.35);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .back a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 32px rgba(218, 165, 60, 0.32);
+        }
+
+        @media (max-width: 520px) {
+            .scope-grid {
+                grid-template-columns: 1fr;
+            }
+            .masthead h1 {
+                font-size: 1.55rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="rails" aria-hidden="true"></div>
+
+    <div class="wrap">
+        <header class="masthead">
+            <span class="label">Data &amp; privacy</span>
+            <h1>Loco Route Express</h1>
+            <p class="intro">A plain-language summary of how this railway puzzle app may handle information on your device and through Apple’s distribution platform.</p>
+        </header>
+
+        <div class="scope-grid">
+            <div class="scope-item">
+                <h2>Product</h2>
+                <p>Loco Route Express (iOS). This page describes the App Store build only—not unrelated websites or services.</p>
+            </div>
+            <div class="scope-item ads">
+                <h2>Advertising</h2>
+                <p>The app may show ads. Ad networks and mediation partners operate under their own privacy policies when an ad is displayed.</p>
+            </div>
+        </div>
+
+        <section class="section" aria-labelledby="collect-heading">
+            <h2 id="collect-heading">What may be collected</h2>
+            <ul class="timeline">
+                <li>
+                    <h3>Gameplay on your device</h3>
+                    <p>Level progress, settings, and session data are typically stored locally in the app sandbox so you can resume runs without creating an in-game account.</p>
+                </li>
+                <li>
+                    <h3>Usage and diagnostics</h3>
+                    <p>As disclosed on the App Store, usage-related data may be processed for analytics, advertising, or similar purposes. Categories and partners can change when the app is updated—refer to Apple’s “App Privacy” label for the current listing.</p>
+                </li>
+                <li>
+                    <h3>Identifiers for ads</h3>
+                    <p>Where ads are shown, device or advertising identifiers may be used to deliver and measure campaigns, subject to your iOS privacy settings and regional rules.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section class="section" aria-labelledby="rights-heading">
+            <h2 id="rights-heading">Your choices</h2>
+            <div class="rights-list">
+                <article>
+                    <h3>Remove local data</h3>
+                    <p>Delete the app from your device, or clear its data in iOS Settings, to remove information stored in the app sandbox.</p>
+                </article>
+                <article>
+                    <h3>Limit tracking and ads</h3>
+                    <p>Use Settings → Privacy &amp; Security (including App Tracking Transparency where available), Screen Time, and content restrictions. Options depend on your iOS version and region.</p>
+                </article>
+                <article>
+                    <h3>Apple-managed services</h3>
+                    <p>Downloads, updates, billing through Apple ID, and certain device diagnostics are handled by Apple under Apple’s privacy policy—not by how this game stores progress on your device.</p>
+                </article>
+            </div>
+        </section>
+
+        <p class="note">
+            This overview is not legal advice. If anything here conflicts with the installed app or the App Store “App Privacy” section, rely on the store listing and on-device behavior. The policy may be updated when features or data practices change; check the App Store label after major updates. No personal contact details or third-party developer homepages are listed on this page.
+        </p>
+
+        <nav class="back">
+            <a href="index.html">Back to game overview</a>
+        </nav>
+    </div>
+</body>
+
+</html>
